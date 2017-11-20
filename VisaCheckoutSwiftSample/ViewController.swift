@@ -41,7 +41,7 @@ class ViewController: UIViewController {
                 let vcoResult = VCOResult(callId: callId, encryptedKey: encryptedKey, encryptedPaymentData: encryptedPaymentData)
                 if let reference = Reference(consumerRef: UUID().uuidString),
                     let transaction = try? Transaction(judoId: judoId, amount: amount, reference: reference)
-                        .vcoResult(vcoResult: vcoResult) {
+                        .vcoResult(vcoResult) {
                     try? judoKit.completion(transaction, block: judoCompletionBlock)
                 }
             }
