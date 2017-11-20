@@ -61,9 +61,8 @@ private func visaCheckoutResultHandler(result: CheckoutResult) {
             let amount = Amount(decimalNumber: 10.99, currency: .GBP)
             let vcoResult = VCOResult(callId: callId, encryptedKey: encryptedKey, encryptedPaymentData: encryptedPaymentData)
             if let reference = Reference(consumerRef: UUID().uuidString),
-                let transaction = try? Transaction(judoId: judoId, amount: amount, reference: reference)
-                    .vcoResult(vcoResult: vcoResult) {
-                try? judoKit.completion(transaction, block: judoCompletionBlock)
+                let payment = try? judoKit.payment(judoId, amount: amount, reference: reference).vcoResult(vcoResult) {
+                _ = try? payment.completion(judoCompletionBlock)
             }
         }
     case .userCancelled:
