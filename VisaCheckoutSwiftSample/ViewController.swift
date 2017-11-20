@@ -39,9 +39,11 @@ class ViewController: UIViewController {
             if let callId = result.callId, let encryptedKey = result.encryptedKey, let encryptedPaymentData = result.encryptedPaymentData {
                 let amount = Amount(decimalNumber: 10.99, currency: .GBP)
                 let vcoResult = VCOResult(callId: callId, encryptedKey: encryptedKey, encryptedPaymentData: encryptedPaymentData)
-                if let reference = Reference(consumerRef: UUID().uuidString),
-                    let payment = try? judoKit.payment(judoId, amount: amount, reference: reference).vcoResult(vcoResult) {
-                    _ = try? payment.completion(judoCompletionBlock)
+                if let reference = Reference(consumerRef: UUID().uuidString) {
+                    _ = try? judoKit
+                        .payment(judoId, amount: amount, reference: reference)
+                        .vcoResult(vcoResult)
+                        .completion(judoCompletionBlock)
                 }
             }
         case .userCancelled:
