@@ -25,6 +25,9 @@ class ViewController: UIViewController {
         /// See the documentation/headers for `PurchaseInfo` for
         /// various ways to customize the purchase experience.
         let purchaseInfo = PurchaseInfo(total: 10.99, currency: .gbp)
+        //purchaseInfo.promoCode = "PROMO1"
+        //purchaseInfo.discount = "0.10"
+        purchaseInfo.orderId = UUID().uuidString // replace with your orderId
         purchaseInfo.reviewAction = .pay
         checkoutButton.onCheckout(purchaseInfo: purchaseInfo, completion: visaCheckoutResultHandler)
     }
