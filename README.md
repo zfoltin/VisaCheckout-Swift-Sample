@@ -3,7 +3,7 @@ Hands on sample for integrating VCO using the Judopay Swift SDK
 
 ## Requirements
 - Xcode 9.1
-- JudoKit 2.6.19
+- JudoKit 2.6.20
 - Visa Checkout SDK 5.5.2
 
 ## Getting started
@@ -13,7 +13,7 @@ Hands on sample for integrating VCO using the Judopay Swift SDK
 Add the Visa Checkout pod to your `Podfile`
 
 ```ruby
-  pod 'JudoKit', '~> 6.2.19'
+  pod 'JudoKit', '~> 6.2.20'
   pod 'VisaCheckout', '~> 5.5.2-9.1'
 ```
 
@@ -48,6 +48,9 @@ VisaCheckoutSDK.configure(profile: profile)
 ```swift
 let purchaseInfo = PurchaseInfo(total: 10.99, currency: .gbp)
 purchaseInfo.reviewAction = .pay
+purchaseInfo.promoCode = "PROMO1"
+purchaseInfo.discount = CurrencyAmount(decimalNumber: 1.99)
+purchaseInfo.orderId = orderId
 checkoutButton.onCheckout(purchaseInfo: purchaseInfo, completion: visaCheckoutResultHandler)
 ```
 
@@ -59,13 +62,12 @@ private func visaCheckoutResultHandler(result: CheckoutResult) {
     case .success:
         if let callId = result.callId, let encryptedKey = result.encryptedKey, let encryptedPaymentData = result.encryptedPaymentData {
             let amount = Amount(decimalNumber: 10.99, currency: .GBP)
+            let reference = Reference(consumerRef: UUID().uuidString, paymentRef: orderId)
             let vcoResult = VCOResult(callId: callId, encryptedKey: encryptedKey, encryptedPaymentData: encryptedPaymentData)
-            if let reference = Reference(consumerRef: UUID().uuidString) {
-                _ = try? judoKit
-                    .payment(judoId, amount: amount, reference: reference)
-                    .vcoResult(vcoResult)
-                    .completion(judoCompletionBlock)
-            }
+            _ = try? judoKit
+                .payment(judoId, amount: amount, reference: reference)
+                .vcoResult(vcoResult)
+                .completion(judoCompletionBlock)
         }
     case .userCancelled:
         print("Payment cancelled by the user")
