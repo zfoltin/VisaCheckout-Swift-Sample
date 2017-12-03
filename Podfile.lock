@@ -1,18 +1,18 @@
 PODS:
   - DeviceDNA (0.1.6)
-  - JudoKit (6.2.19):
+  - JudoKit (6.2.20):
     - DeviceDNA
   - VisaCheckout (5.5.2-9.1)
 
 DEPENDENCIES:
-  - JudoKit (~> 6.2.19)
+  - JudoKit (~> 6.2.20)
   - VisaCheckout (~> 5.5.2-9.1)
 
 SPEC CHECKSUMS:
   DeviceDNA: 06c4c1af198fc8b44711d10bed39e0a8638b490d
-  JudoKit: 7c3d5c27704d16d945bd544c82f4f6208ac4d20a
+  JudoKit: 9bbfbb0768a5a83afdfc65a3a1a580e5c614c92a
   VisaCheckout: d321761e68b0ff7dee6ca802e8e8ca66f8a810b4
 
-PODFILE CHECKSUM: 4e4724876a22abd22a21236972ec2d6aa81d0446
+PODFILE CHECKSUM: 05ba86c85f47adfbe4eefd87d4d5c8d78745b6f8
 
 COCOAPODS: 1.3.1
