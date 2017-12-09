@@ -2,9 +2,10 @@
 Hands on sample for integrating VCO using the Judopay Swift SDK
 
 ## Requirements
-- Xcode 9.1
-- JudoKit 2.6.20
-- Visa Checkout SDK 5.5.2
+- Xcode 9
+- Swift 4
+- JudoKit 2.6.21+
+- Visa Checkout SDK 5.5.2+
 
 ## Getting started
 
@@ -13,7 +14,7 @@ Hands on sample for integrating VCO using the Judopay Swift SDK
 Add the Visa Checkout pod to your `Podfile`
 
 ```ruby
-  pod 'JudoKit', '~> 6.2.20'
+  pod 'JudoKit', '~> 6.2.21'
   pod 'VisaCheckout', '~> 5.5.2-9.1'
 ```
 
