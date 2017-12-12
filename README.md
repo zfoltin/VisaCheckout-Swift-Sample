@@ -14,13 +14,11 @@ Hands on sample for integrating VCO using the Judopay Swift SDK
 Add the Visa Checkout pod to your `Podfile`
 
 ```ruby
-  pod 'JudoKit', '~> 6.2.21'
+  pod 'JudoKit', '~> 7.0.0'
   pod 'VisaCheckout', '~> 5.5.2-9.1'
 ```
 
-Then run `pod install`
-
-Set the `Swift Language Version` to `Swift 3.2` for the JudoKit target in the Pods project.
+Run `pod install`
 
 ##### Manually
 Download the [Visa Checkout SDK](https://developer.visa.com/capabilities/visa_checkout/docs#adding_visa_checkout_to_a_mobile_application) and follow the instructions in the bundled documentation.
