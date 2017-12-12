@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     private func judoCompletionBlock(response: Response?, error: JudoError?) {
         var title: String
         var message: String
-        if let response = response, response.items.count > 0, response.items[0].result == .Success {
+        if let response = response, response.items.count > 0, response.items[0].result == .success {
             title = "Great Success!"
             message = "Payment successful! 🎉"
         } else {

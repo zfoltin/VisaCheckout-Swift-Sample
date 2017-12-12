@@ -191,12 +191,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-VisaCheckoutSwiftSample/Pods-VisaCheckoutSwiftSample-frameworks.sh",
 				"${PODS_ROOT}/DeviceDNA/Framework/DeviceDNA.framework",
 				"${BUILT_PRODUCTS_DIR}/JudoKit/JudoKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustKit/TrustKit.framework",
 				"${PODS_ROOT}/VisaCheckout/VisaCheckoutSDK_5.5.2_e8928c49/VisaCheckoutSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceDNA.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JudoKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VisaCheckoutSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
