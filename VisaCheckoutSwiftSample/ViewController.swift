@@ -23,18 +23,25 @@ class ViewController: UIViewController {
     }
 
     private func initVisaCheckout() {
+        let profile = Profile(environment: .sandbox, apiKey: "<#Your VCO api key#>", profileName: nil)
+        // An arbitrary example of some configuration details you can customize.
+        profile.datalevel = .full
+        // MEMO: for some reason VCO doesn't like setting acceptedCardBrands
+//        profile.acceptedCardBrands = [CardBrand.visa, CardBrand.mastercard, CardBrand.discover]
+
         // See the Visa Checkout documentation for `PurchaseInfo` for various ways to customize the purchase experience.
-        let purchaseInfo = PurchaseInfo(total: 10.99, currency: .gbp)
+        let purchaseInfo = PurchaseInfo(total: CurrencyAmount(double: 10.99), currency: .gbp)
         purchaseInfo.reviewAction = .pay
         purchaseInfo.promoCode = "PROMO1"
         purchaseInfo.discount = CurrencyAmount(decimalNumber: 1.99)
         purchaseInfo.orderId = orderId
-        checkoutButton.onCheckout(purchaseInfo: purchaseInfo, completion: visaCheckoutResultHandler)
+
+        checkoutButton.onCheckout(profile: profile, purchaseInfo: purchaseInfo, presenting: self, completion: visaCheckoutResultHandler)
     }
 
     private func visaCheckoutResultHandler(result: CheckoutResult) {
         switch result.statusCode {
-        case .success:
+        case .statusSuccess:
             if let callId = result.callId, let encryptedKey = result.encryptedKey, let encryptedPaymentData = result.encryptedPaymentData {
                 let amount = Amount(decimalNumber: 10.99, currency: .GBP)
                 let reference = Reference(consumerRef: UUID().uuidString, paymentRef: orderId)
@@ -44,7 +51,7 @@ class ViewController: UIViewController {
                     .vcoResult(vcoResult)
                     .completion(judoCompletionBlock)
             }
-        case .userCancelled:
+        case .statusUserCancelled:
             print("Payment cancelled by the user. 💔")
         default:
             break

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		157EBDC91FC1AA93002061FF /* VisaCheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157EBDC81FC1AA93002061FF /* VisaCheckoutButton.swift */; };
 		15E5EA7C1FC1A1D100E28BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E5EA7B1FC1A1D100E28BE6 /* AppDelegate.swift */; };
 		15E5EA7E1FC1A1D100E28BE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E5EA7D1FC1A1D100E28BE6 /* ViewController.swift */; };
 		15E5EA811FC1A1D100E28BE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15E5EA7F1FC1A1D100E28BE6 /* Main.storyboard */; };
@@ -17,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		157EBDC81FC1AA93002061FF /* VisaCheckoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisaCheckoutButton.swift; sourceTree = "<group>"; };
 		15E5EA781FC1A1D100E28BE6 /* VisaCheckoutSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisaCheckoutSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15E5EA7B1FC1A1D100E28BE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15E5EA7D1FC1A1D100E28BE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 		15E5EA7A1FC1A1D100E28BE6 /* VisaCheckoutSwiftSample */ = {
 			isa = PBXGroup;
 			children = (
-				157EBDC81FC1AA93002061FF /* VisaCheckoutButton.swift */,
 				15E5EA7B1FC1A1D100E28BE6 /* AppDelegate.swift */,
 				15E5EA7D1FC1A1D100E28BE6 /* ViewController.swift */,
 				15E5EA7F1FC1A1D100E28BE6 /* Main.storyboard */,
@@ -103,7 +100,6 @@
 				15E5EA751FC1A1D100E28BE6 /* Frameworks */,
 				15E5EA761FC1A1D100E28BE6 /* Resources */,
 				79BA92E7AC585B1A44A03BA4 /* [CP] Embed Pods Frameworks */,
-				5F4522F958FCD1260BAF6F25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -121,7 +117,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Judopay;
 				TargetAttributes = {
 					15E5EA771FC1A1D100E28BE6 = {
@@ -162,26 +158,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F4522F958FCD1260BAF6F25 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VisaCheckoutSwiftSample/Pods-VisaCheckoutSwiftSample-resources.sh",
-				"${PODS_ROOT}/VisaCheckout/VisaCheckoutSDK_5.5.2_e8928c49/VisaCheckoutButton+Designable.h",
-				"${PODS_ROOT}/VisaCheckout/VisaCheckoutSDK_5.5.2_e8928c49/VisaCheckoutButton+Designable.m",
-				"${PODS_ROOT}/VisaCheckout/VisaCheckoutSDK_5.5.2_e8928c49/VisaCheckoutButton.swift",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VisaCheckoutSwiftSample/Pods-VisaCheckoutSwiftSample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		79BA92E7AC585B1A44A03BA4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,7 +168,7 @@
 				"${PODS_ROOT}/DeviceDNA/Framework/DeviceDNA.framework",
 				"${BUILT_PRODUCTS_DIR}/JudoKit/JudoKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TrustKit/TrustKit.framework",
-				"${PODS_ROOT}/VisaCheckout/VisaCheckoutSDK_5.5.2_e8928c49/VisaCheckoutSDK.framework",
+				"${PODS_ROOT}/VisaCheckoutSDK/VisaCheckout-iOS-SDK-6.3.0/VisaCheckoutSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -232,7 +208,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				15E5EA7E1FC1A1D100E28BE6 /* ViewController.swift in Sources */,
-				157EBDC91FC1AA93002061FF /* VisaCheckoutButton.swift in Sources */,
 				15E5EA7C1FC1A1D100E28BE6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +248,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -280,6 +256,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -330,6 +307,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -337,6 +315,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
