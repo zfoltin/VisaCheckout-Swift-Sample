@@ -1,21 +1,21 @@
 # VisaCheckout-Swift-Sample
-Hands on sample for integrating VCO using the Judopay Swift SDK
+Hands-on sample app for integrating Visa Checkout using the [Judopay Swift SDK](https://cocoapods.org/pods/JudoKit)
 
 ## Requirements
-- Xcode 9
-- Swift 4
-- JudoKit 2.6.21+
-- Visa Checkout SDK 5.5.2+
+- Xcode 9.4.1
+- Swift 4.1
+- JudoKit 7.1.0
+- Visa Checkout SDK 6.3.0
 
 ## Getting started
 
-#### 1. Add the Visa Checkout SDK to the project
+#### 1. Add the Visa Checkout SDK to your project
 ##### Cocoapods
-Add the Visa Checkout pod to your `Podfile`
+Add the Visa Checkout SDK pod to your `Podfile` alongside the `JudoKit` pod
 
 ```ruby
-  pod 'JudoKit', '~> 7.0.0'
-  pod 'VisaCheckout', '~> 5.5.2-9.1'
+  pod 'JudoKit', '~> 7.1.0'
+  pod 'VisaCheckoutSDK', '~> 6.3.0'
 ```
 
 Run `pod install`
@@ -23,42 +23,34 @@ Run `pod install`
 ##### Manually
 Download the [Visa Checkout SDK](https://developer.visa.com/capabilities/visa_checkout/docs#adding_visa_checkout_to_a_mobile_application) and follow the instructions in the bundled documentation.
 
-#### 2. Configure the Visa Checkout SDK
-Add the VCO configuration in your `AppDelegate.swift` after importing the `VisaCheckoutSDK`
-
-```swift
-let profile = Profile(environment: .sandbox, apiKey: "your VCO api key")
-/// An arbitrary example of some configuration details you can customize.
-/// See the documentation/headers for `Profile`.
-profile.datalevel = .full
-profile.acceptedCardBrands = [.visa, .mastercard, .discover]
-
-VisaCheckoutSDK.configure(profile: profile)
-
-```
-
-#### 3. Add the Visa Checkout button to your screen
-- Copy the `VisaCheckoutButton.swift` into your project.
+#### 2. Add the Visa Checkout button to your ViewController in the storyboard
 - Add a `View` to your `ViewController`
 - Set the custom class of the view to `VisaCheckoutButton`
+- Connect the view with an `@IBOutlet` in your `ViewController`
 
-#### 4. Create a `PurchaseInfo` and set up the `VisaCheckoutButton`
+#### 3. Create a `PurchaseInfo` and set up the `VisaCheckoutButton`
+Import `VisaCheckoutSDK` and `JudoKit`
 
 ```swift
-let purchaseInfo = PurchaseInfo(total: 10.99, currency: .gbp)
+let profile = Profile(environment: .sandbox, apiKey: "<#Your VCO api key#>", profileName: nil)
+// An arbitrary example of some configuration details you can customize.
+profile.datalevel = .full
+
+let purchaseInfo = PurchaseInfo(total: CurrencyAmount(double: 10.99), currency: .gbp)
 purchaseInfo.reviewAction = .pay
 purchaseInfo.promoCode = "PROMO1"
 purchaseInfo.discount = CurrencyAmount(decimalNumber: 1.99)
 purchaseInfo.orderId = orderId
-checkoutButton.onCheckout(purchaseInfo: purchaseInfo, completion: visaCheckoutResultHandler)
+
+checkoutButton.onCheckout(profile: profile, purchaseInfo: purchaseInfo, presenting: self, completion: visaCheckoutResultHandler)
 ```
 
-#### 5. Handle the VCO response and pass on the result to Judo
+#### 4. Handle the VCO response and pass on the result to Judo
 
 ```swift
 private func visaCheckoutResultHandler(result: CheckoutResult) {
     switch result.statusCode {
-    case .success:
+    case .statusSuccess:
         if let callId = result.callId, let encryptedKey = result.encryptedKey, let encryptedPaymentData = result.encryptedPaymentData {
             let amount = Amount(decimalNumber: 10.99, currency: .GBP)
             let reference = Reference(consumerRef: UUID().uuidString, paymentRef: orderId)
@@ -68,7 +60,7 @@ private func visaCheckoutResultHandler(result: CheckoutResult) {
                 .vcoResult(vcoResult)
                 .completion(judoCompletionBlock)
         }
-    case .userCancelled:
+    case .statusUserCancelled:
         print("Payment cancelled by the user")
     default:
         break
@@ -76,7 +68,7 @@ private func visaCheckoutResultHandler(result: CheckoutResult) {
 }
 ```
 
-#### 6. Handle the Judo callback to check the payment results
+#### 5. Handle the Judo callback to check the payment results
 
 ```swift
 private func judoCompletionBlock(response: Response?, error: JudoError?) {
