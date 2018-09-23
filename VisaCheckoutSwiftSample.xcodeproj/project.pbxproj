@@ -122,6 +122,7 @@
 				TargetAttributes = {
 					15E5EA771FC1A1D100E28BE6 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -168,7 +169,7 @@
 				"${PODS_ROOT}/DeviceDNA/Framework/DeviceDNA.framework",
 				"${BUILT_PRODUCTS_DIR}/JudoKit/JudoKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TrustKit/TrustKit.framework",
-				"${PODS_ROOT}/VisaCheckoutSDK/VisaCheckout-iOS-SDK-6.3.0/VisaCheckoutSDK.framework",
+				"${PODS_ROOT}/VisaCheckoutSDK/VisaCheckout-iOS-SDK-6.6.0/VisaCheckoutSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -356,7 +357,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.vcosample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -372,7 +373,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.judopay.vcosample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

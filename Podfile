@@ -7,5 +7,5 @@ target 'VisaCheckoutSwiftSample' do
 
   # Pods for VisaCheckoutSwiftSample
   pod 'JudoKit', '~> 7.1.0'
-  pod 'VisaCheckoutSDK', '~> 6.3.0'
+  pod 'VisaCheckoutSDK', '~> 6.6.0'
 end

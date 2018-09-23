@@ -4,11 +4,11 @@ PODS:
     - DeviceDNA
     - TrustKit
   - TrustKit (1.5.3)
-  - VisaCheckoutSDK (6.3.0)
+  - VisaCheckoutSDK (6.6.0)
 
 DEPENDENCIES:
   - JudoKit (~> 7.1.0)
-  - VisaCheckoutSDK (~> 6.3.0)
+  - VisaCheckoutSDK (~> 6.6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -21,8 +21,8 @@ SPEC CHECKSUMS:
   DeviceDNA: 06c4c1af198fc8b44711d10bed39e0a8638b490d
   JudoKit: 93425d92351c0df361b6320d3afd929f6a0651a0
   TrustKit: b2bd5cb6a69cb17a95af87af327ecaa93c8da4bd
-  VisaCheckoutSDK: 1a12685f0997fb3c255814195a8e8cfc9dade709
+  VisaCheckoutSDK: 4c487908442485197679bdbd92bf98424014693f
 
-PODFILE CHECKSUM: e1b144b3e4c4af34040dcc2cf755c946ed893fac
+PODFILE CHECKSUM: 18354d7974c21b5893501270c18b7898928db67b
 
 COCOAPODS: 1.5.3

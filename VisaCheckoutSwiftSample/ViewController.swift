@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private let judoKit = JudoKit(token: "<#Your Judopay token#>", secret: "<#Your Judopay secret#>")
     private let judoId = "<#Your Judopay Id#>"
     private let orderId = UUID().uuidString
+    private var launchCheckoutHandle: LaunchHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,25 +37,37 @@ class ViewController: UIViewController {
         purchaseInfo.discount = CurrencyAmount(decimalNumber: 1.99)
         purchaseInfo.orderId = orderId
 
-        checkoutButton.onCheckout(profile: profile, purchaseInfo: purchaseInfo, presenting: self, completion: visaCheckoutResultHandler)
+        checkoutButton.onCheckout(profile: profile,
+                                  purchaseInfo: purchaseInfo,
+                                  presenting: self,
+                                  onReady: { [weak self] launchHandle in self?.launchCheckoutHandle = launchHandle },
+                                  onButtonTapped: { [weak self] in self?.launchCheckoutHandle?() },
+                                  completion: getVisaCheckoutResultHandler())
     }
 
-    private func visaCheckoutResultHandler(result: CheckoutResult) {
-        switch result.statusCode {
-        case .statusSuccess:
-            if let callId = result.callId, let encryptedKey = result.encryptedKey, let encryptedPaymentData = result.encryptedPaymentData {
-                let amount = Amount(decimalNumber: 10.99, currency: .GBP)
-                let reference = Reference(consumerRef: UUID().uuidString, paymentRef: orderId)
-                let vcoResult = VCOResult(callId: callId, encryptedKey: encryptedKey, encryptedPaymentData: encryptedPaymentData)
-                _ = try? judoKit
-                    .payment(judoId, amount: amount, reference: reference)
-                    .vcoResult(vcoResult)
-                    .completion(judoCompletionBlock)
+    private func getVisaCheckoutResultHandler() -> VisaCheckoutResultHandler {
+        return { [weak self] result in
+            guard let self = self else { return }
+
+            // Make sure to re-init in your result handler
+            self.initVisaCheckout()
+
+            switch result.statusCode {
+            case .statusSuccess:
+                if let callId = result.callId, let encryptedKey = result.encryptedKey, let encryptedPaymentData = result.encryptedPaymentData {
+                    let amount = Amount(decimalNumber: 10.99, currency: .GBP)
+                    let reference = Reference(consumerRef: UUID().uuidString, paymentRef: self.orderId)
+                    let vcoResult = VCOResult(callId: callId, encryptedKey: encryptedKey, encryptedPaymentData: encryptedPaymentData)
+                    _ = try? self.judoKit
+                        .payment(self.judoId, amount: amount, reference: reference)
+                        .vcoResult(vcoResult)
+                        .completion(self.judoCompletionBlock)
+                }
+            case .statusUserCancelled:
+                print("Payment cancelled by the user. 💔")
+            default:
+                break
             }
-        case .statusUserCancelled:
-            print("Payment cancelled by the user. 💔")
-        default:
-            break
         }
     }
 
